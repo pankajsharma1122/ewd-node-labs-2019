@@ -1,15 +1,19 @@
-// Load the http module to create an http server.
-import http from 'http';
 import dotenv from 'dotenv';
-import greeting from './greeting.js';
+import express from 'express';
+import greeting from './greeting';
 
 dotenv.config();
+
+const app = express();
+
 const port = process.env.PORT;
 
-// Configure our HTTP server to respond with Hello World to all requests.
-const server = http.createServer((req, res) => {
+app.use(express.static('public'));
+
+// add route for /greeting
+app.get('/greeting', (req, res)=>{
   let lang = req.headers['accept-language'];
-  const defaultLang='fr';
+  const defaultLang='en';
   if (!greeting[lang]) lang=defaultLang;
   const response={
     lang: lang,
@@ -21,7 +25,7 @@ const server = http.createServer((req, res) => {
   res.end(response.message);
 });
 
-server.listen(port);
 
-// Put a friendly message on the terminal
-console.log(`Server running at ${port}`);
+app.listen(port, () => {
+  console.info(`Server running at ${port}`);
+});
