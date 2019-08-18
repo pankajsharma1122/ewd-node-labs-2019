@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import greeting from './greeting';
 import contactsRouter from './api/contacts';
+import postsRouter from './api/posts/';
 
 import bodyParser from 'body-parser';
 
@@ -34,6 +35,9 @@ app.get('/greeting', (req, res)=>{
 });
 
 app.use('/api/contacts', contactsRouter);
+
+app.use('/api/posts', postsRouter);
+
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
