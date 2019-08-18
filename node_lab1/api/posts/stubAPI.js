@@ -74,6 +74,20 @@ import _ from 'lodash';
                     }
             return result;
             },
+            getComment: (id,commentId) => {
+                let post = stubAPI.getPost(id);
+                const commentIndex = -1;
+                let result = null;
+                if (post) {
+                    const commentIndex = _.findIndex(post.comments,
+                        (comment) => {return comment.id = commentId});
+                    if (commentIndex >= 0 ) {
+                        result = post.comments[commentIndex];
+                    }        
+
+                }
+                return result;
+                },
          addComment: (postId, c, n) => {
             let result = false;
             const post = stubAPI.getPost(postId);
