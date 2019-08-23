@@ -4,7 +4,7 @@
   "description": "node lab1",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --ignore hackerNews/* --exec babel-node index.js"
   },
   "author": "pankajsharma1122",
   "license": "ISC",
