@@ -8,7 +8,13 @@ import bodyParser from 'body-parser';
 import loadContacts from './contactsData';
 import {loadPosts} from './postsData';
 
+import usersRouter from './api/users';
+import session from 'express-session';
+import authenticate from './authenicate'
+//import authenticate from './authenticate';
+
 import './db'
+import loadUsers from './userData';
 
 
 
@@ -22,6 +28,12 @@ app.use(express.static('public'));
 //configure body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+//session middleware
+app.use(session({
+  secret: 'ilikecake',
+  resave: true,
+  saveUninitialized: true
+}));
 
 // add route for /greeting
 app.get('/greeting', (req, res)=>{
@@ -40,7 +52,9 @@ app.get('/greeting', (req, res)=>{
 
 app.use('/api/contacts', contactsRouter);
 
-app.use('/api/posts', postsRouter);
+app.use('/api/posts', authenticate,postsRouter);
+//User router
+app.use('/api/users', usersRouter);
 
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
@@ -54,4 +68,7 @@ if (process.env.seedDb) {
 if (process.env.seedDb) {
   loadContacts();
   loadPosts();
+  loadUsers();
 }
+
+
