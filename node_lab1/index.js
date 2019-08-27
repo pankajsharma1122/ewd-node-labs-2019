@@ -5,6 +5,10 @@ import contactsRouter from './api/contacts';
 import postsRouter from './api/posts/';
 
 import bodyParser from 'body-parser';
+import loadContacts from './contactsData';
+import {loadPosts} from './postsData';
+
+import './db'
 
 
 
@@ -41,3 +45,13 @@ app.use('/api/posts', postsRouter);
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
+
+if (process.env.seedDb) {
+  loadContacts();
+}
+
+// Populate DB with sample data
+if (process.env.seedDb) {
+  loadContacts();
+  loadPosts();
+}
