@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import App from './App';
 import CommentPage from './components/commentPage';
+import LoginPage from './components/loginPage';
 
 const Router = (props) => {
     return (
@@ -18,6 +19,7 @@ const Router = (props) => {
             </div>
             <Switch>
                 <Route path='/posts/:post_id' component={ CommentPage } />
+                <Route path='/login' component={LoginPage} />
                 <Route exact path='/' component={ App } />
                 <Redirect from='*' to='/' />
             </Switch>

@@ -5,7 +5,7 @@ import asyncHandler from 'express-async-handler';
 const router = express.Router();// eslint-disable-line
 
 router.get('/', asyncHandler(async (req, res) => {
-  await Post.find().sort('date').limit(2).exec(function(err, posts) {
+  await Post.find().sort('date').limit(15).exec(function(err, posts) {
     //do stuff with posts
     return res.send(posts);
   });
@@ -14,37 +14,19 @@ router.get('/', asyncHandler(async (req, res) => {
 
 // Add a post
 router.post('/', asyncHandler(async (req, res) => {
-    const newPost = req.body;
-    //console.log("newPost11>>" + newPost);
-    //let maxid = 1;
-    if (newPost) {
-      /*maxid = await Post.findOne().sort('-id').exec( async function (err, post) {
-        if(post) {
-          console.log("post>>" + post)
-          maxid = parseInt(post.id, 10) + 1;
-          console.log("maxid>>" + maxid);
-          console.log("username>>" + newPost.username);
-          //console.log("maxid>>" + maxid)
-          //return parseInt(post.id, 10) + 1;
-          //await newPost["id"] = maxid;
-
-          console.log(JSON.stringify(newPost,null,'\t'));
-          newPost["sdsfsdfdsfdsf"] = 12121;
-          console.log(JSON.stringify(newPost,null,'\t'));
-          const post1 = await Post.create(newPost);
-          return res.status(201).send({post1});
-          //console.log("newPost>>" + newPost.toString())
-          
-        }});*/
-
-
+  const newPost = req.body;
+  // console.log(req.method);
+  //   console.log(req.headers);
+  //   console.log(req.url);
+  //   console.log(req.body);
+  //   console.log("req.user::" + JSON.stringify(req.user));
+  newPost.user = req.user || 'anonymous';
+  if (newPost) {
         const post = await Post.create(newPost);
         return res.status(201).send({post});
-        
-          
-      } else {
-         return handleError(res, err);
-      }
+    } else {
+       return handleError(res, err);
+    }
 }));
 
 // upvote a post

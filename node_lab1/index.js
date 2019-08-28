@@ -13,8 +13,9 @@ import session from 'express-session';
 import authenticate from './authenicate'
 //import authenticate from './authenticate';
 
-import './db'
+import './db';
 import loadUsers from './userData';
+import passport from './auth';
 
 
 
@@ -22,9 +23,8 @@ dotenv.config();
 
 const app = express();
 
-const port = process.env.PORT;
 
-app.use(express.static('public'));
+
 //configure body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -34,6 +34,14 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+const port = process.env.PORT;
+
+app.use(express.static('public'));
+
+
+
+app.use(passport.initialize());
 
 // add route for /greeting
 app.get('/greeting', (req, res)=>{
@@ -52,7 +60,9 @@ app.get('/greeting', (req, res)=>{
 
 app.use('/api/contacts', contactsRouter);
 
-app.use('/api/posts', authenticate,postsRouter);
+//app.use('/api/posts', authenticate,postsRouter);
+
+app.use('/api/posts', passport.authenticate('jwt', {session: false}), postsRouter);
 //User router
 app.use('/api/users', usersRouter);
 
