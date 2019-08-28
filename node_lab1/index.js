@@ -5,8 +5,7 @@ import contactsRouter from './api/contacts';
 import postsRouter from './api/posts/';
 
 import bodyParser from 'body-parser';
-import loadContacts from './contactsData';
-import {loadPosts} from './postsData';
+
 
 import usersRouter from './api/users';
 import session from 'express-session';
@@ -14,14 +13,14 @@ import authenticate from './authenicate'
 //import authenticate from './authenticate';
 
 import './db';
-import loadUsers from './userData';
 import passport from './auth';
 
 
 
 dotenv.config();
 
-const app = express();
+//const app = express();
+export const app = express();
 
 
 
@@ -70,15 +69,8 @@ app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
 
-if (process.env.seedDb) {
-  loadContacts();
-}
 
-// Populate DB with sample data
-if (process.env.seedDb) {
-  loadContacts();
-  loadPosts();
-  loadUsers();
-}
+
+
 
 

@@ -1,5 +1,5 @@
-import contactModel from './api/contacts/contactModel';
-
+import contactModel from '../api/contacts/contactModel';
+ 
 const contacts = [{
     'name': 'Contact 1',
     'address': '123 Test St',
@@ -16,12 +16,13 @@ const contacts = [{
     'phone_number': '432-5832',
   },
   {
+ 
     'name': 'Contact 4',
     'address': '49 Upper Street',
     'phone_number': '934-4290',
   },
 ];
-
+ 
 export default async function loadContacts() {
   try {
     await contactModel.deleteMany();

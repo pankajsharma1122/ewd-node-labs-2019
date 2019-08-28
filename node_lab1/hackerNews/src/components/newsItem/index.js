@@ -26,7 +26,7 @@ render() {
             {this.props.post.upvotes}
         <span className="newsitem" >{line}
         <span>
-            <Link to={`/posts/${this.props.post.id}` }>Comments</Link>
+            <Link to={`/posts/${this.props.post.id}`}>Comments</Link>
         </span>
         </span>
         </div>  

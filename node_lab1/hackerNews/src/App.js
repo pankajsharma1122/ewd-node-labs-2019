@@ -3,7 +3,7 @@ import NewsList from './components/newsList';
 import Form from './components/newsForm';
 import * as api from './api';
 import _ from 'lodash';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
  
 let posts = api.getAll();
  
