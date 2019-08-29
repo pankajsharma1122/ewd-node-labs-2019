@@ -1,12 +1,12 @@
 import axios from 'axios';
 import auth from './auth';
 export const upvote = async (postId) => {
-   axios.post(`/api/posts/${postId}/upvote`)
+   axios.post(`/api/posts/${postId}/upvotes`,{},{headers: {'Authorization': auth.getToken()}})
               .then(resp => resp.data);
 };
 
 export const getAll = async () => {
-   const resp = await axios.get('/api/posts',{headers: {'Authorization': auth.getToken()}},)
+   const resp = await axios.get('/api/posts',{headers: {'Authorization': auth.getToken()}})
    return resp.data;
 };
 

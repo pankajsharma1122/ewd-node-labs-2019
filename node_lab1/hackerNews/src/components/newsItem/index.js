@@ -5,10 +5,10 @@ import {  Link } from 'react-router-dom';
 
 export default class NewsItem extends Component {
 
-handleVote = () =>  this.props.upvoteHandler(this.props.post.id);
+handleVote = () =>  this.props.upvoteHandler(this.props.post._id);
 
 shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.post.upvotes !== this.props.post.upvotes
+    return true;
  }
 render() {
     console.log(`News item - ${this.props.post.id}`)

@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "unit-test":"cross-env NODE_ENV=test mocha './api/**/tests/*.js --require babel-core/register --require babel-polyfill --exit",
-    "test":"cross-env NODE_ENV=test mocha --require babel-core/register --require babel-polyfill --exit",
-    "pretest":"eslint .js ./api/contacts/.js ./test/*.js"
+    "unit-test": "cross-env NODE_ENV=test mocha './api/**/tests/*.js --require babel-core/register --require babel-polyfill --exit"
   },
   "author": "pankajsharma1122",
   "license": "ISC",

@@ -34,17 +34,20 @@ export default class App extends Component {
         })
       };
  
-      incrementUpvote = (id) => {
-        api.upvote(id).then(resp=> {
-               var upvotedPost = _.find(this.state.posts, post=>post.id == id);
+      incrementUpvote = (_id) => {
+        api.upvote(_id).then(resp=> {
+                console.log("In response" + resp);
+               var upvotedPost = _.find(this.state.posts, post=>post._id == _id);
                upvotedPost.upvotes++; 
                this.setState({})
              }) ;
       };
  
       render() {
+          
         const posts = _.sortBy(this.state.posts, post =>
             post.upvotes);
+            console.log("render12121" + JSON.stringify(posts)) ;
         return (
             <div className="container">
                 <div className="row">

@@ -32,10 +32,7 @@ router.post('/', asyncHandler(async (req, res) => {
 // upvote a post
 router.post('/:id/upvotes', asyncHandler(async (req, res) => {
   const id = req.params.id;
-  const post = await Post.Model.findOne({"id" : id},() => {
-
-     }
-  );
+  const post = await Post.findById(id);
   post.upvotes++;
   await post.save();
   return res.status(201).send({post});

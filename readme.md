@@ -109,6 +109,10 @@ Unit test has been accomplished
 
 ## Extra features
 
+Deployed contact application to Cloud as part of Labs
+http://daffy-theory.surge.sh
+
+
 ## Independent learning.
 .  
 
